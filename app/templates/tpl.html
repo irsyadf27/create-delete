@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 101 Template</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-default ">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+
+    {% if error is not None %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+    <div class="panel panel-info">
+      <div class="panel-heading">Form</div>
+      <div class="panel-body">
+        <form class="form-inline" action="/" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="data" value="{{ data }}">
+          <div class="form-group">
+            <label for="exampleInputName2">Nama</label>
+            <input type="text" name="nama" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail2">Email</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        
+      </div>
+    </div>
+    <div class="panel panel-warning">
+      <div class="panel-heading">Tabel</div>
+      <table class="table">
+        <thead>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Aksi</th>
+        </thead>
+        <tbody>
+          {% for dt in tabel %}
+          <tr>
+            <td>{{ dt.nama }}</td>
+            <td>{{ dt.email }}</td>
+            <td><button name="del" value="{{ dt.email }}" class="btn btn-sm btn-danger">Delete</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </form>
+  </div>
+  </body>
+</html>
